@@ -28,16 +28,21 @@ public class CompanyController {
 	@GetMapping("/addCompany")
 	public String addCompany(Model model) {
 		Company company = new Company();
+		
+		// Agrega la compañia al modelo para que pueda ser utilizada en el form
 		model.addAttribute("company", company);
 		return "addCompany";
 	}
 	
 	@PostMapping("/addCompany/added")
 	public String addedCompany(Model model, @ModelAttribute("company") Company c) {
+		
+		//Añade a la compañia
 	    companyService.addCompany(c);
 	    String resultado = "The company was added";
 	    model.addAttribute("resultado", resultado);
 	    
+	    // Redirige a la URL "/listCompanies"
 	    return "redirect:/listCompanies";
 	}
 
