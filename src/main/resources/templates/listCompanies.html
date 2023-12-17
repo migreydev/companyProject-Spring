@@ -20,6 +20,13 @@
 				<td th:text="${company.name}"></td>
 				<td th:text="${company.address}"></td>
 				<td th:text="${company.city}"></td>
+				<td>
+    				<a th:href="@{/updateCompany(id=${company.id})}" class="btn btn-warning">Update Company</a>
+				</td>
+				<td>
+    				<a th:href="@{/deleteCompany(id=${company.id})}" class="btn btn-danger">Delete Company</a>
+				</td>
+
 			</tr>
 		</tbody>
 	</table>	
