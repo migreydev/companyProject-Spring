@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jacaranda.EmployeeProjectSpring.model.Company;
+import com.jacaranda.EmployeeProjectSpring.model.Employee;
 import com.jacaranda.EmployeeProjectSpring.repository.CompanyRepository;
 
 @Service

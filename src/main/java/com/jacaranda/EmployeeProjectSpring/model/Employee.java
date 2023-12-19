@@ -1,5 +1,6 @@
 package com.jacaranda.EmployeeProjectSpring.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -17,14 +18,13 @@ public class Employee {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
+	private Integer id;
 	
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String gender;
-	private Date dateOfBirth;
+	private LocalDate  dateOfBirth;
 	private String rol;
 	private String password;
 	
@@ -88,12 +88,12 @@ public class Employee {
 	}
 
 
-	public Date getDateOfBirth() {
+	public LocalDate  getDateOfBirth() {
 		return dateOfBirth;
 	}
 
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(LocalDate  dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 

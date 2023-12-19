@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<div th:replace="layout/head :: head"></div>
+	<body>
+		<nav th:replace="layout/menu :: menuJacaranda"></nav>
+		<div class="container">
+		<br>	
+			<form th:action="@{/addEmployee/addedEmployee}" th:object="${employee}" method="post">
+				<p>firstName 
+					<input th:field="*{firstName}" type="text">
+				 </p>
+				<p>lastName 
+					<input th:field="*{lastName}" type="text"> 
+				</p>
+				<p>email <input th:field="*{email}" type="email"> 
+				</p>
+				<p>gender 
+					<select th:field="*{gender}">
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+						<option value="Bigender">Bigender</option>
+					</select>
+				 </p>
+				<p>Date Of Birth 
+				    <input th:field="*{dateOfBirth}" type="date" th:format="${#dates.format(employee.dateOfBirth, 'yyyy-MM-dd')}"> 
+				</p>
+
+				<p>Company 
+					<select th:field="*{company}">
+					    <option th:each="company:${listCompanies}" th:value="${company.id}" th:text="${company.name}"></option>
+					</select>
+				</p>
+				<p>Rol 
+					<select th:field="*{rol}">
+						<option value="admin">Admin</option>
+						<option value="user">User</option>
+					</select> 
+				</p>
+				<p>Password 
+					<input th:field="*{password}" type="password"> 
+				</p>
+				<button type="submit" class="btn btn-primary">Add Employee</button>
+			</form>
+			</div>
+		<div th:insert="layout/footer :: pie"></div>
+	</body>
+</html>

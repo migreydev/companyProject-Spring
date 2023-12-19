@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<div th:replace="layout/head :: head"></div>
+<body>
+<nav th:replace="layout/menu :: menuJacaranda"></nav>
+<div class="container">
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">id</th>
+				<th scope="col">firstName</th>
+				<th scope="col">lastName</th>
+				<th scope="col">email</th>
+				<th scope="col">gender</th>
+				<th scope="col">dateOfBirth</th>
+				<th scope="col">idCompany</th>
+				<th scope="col">rol</th>
+				<th scope="col">password</th>
+			</tr>
+		</thead>
+		<tbody>
+			<td>
+					<a th:href="@{/addEmployee}" class="btn btn-success">Add </a>
+				</td>
+			<!-- itera sobre la lista de empleados -->
+			<tr th:each="employee : ${listEmployee}">
+				<td th:text="${employee.id}"></td>
+				<td th:text="${employee.firstName}"></td>
+				<td th:text="${employee.lastName}"></td>
+				<td th:text="${employee.email}"></td>
+				<td th:text="${employee.gender}"></td>
+				<td th:text="${employee.dateOfBirth}"></td>
+				<td th:text="${employee.company.getId}"></td>
+				<td th:text="${employee.rol}"></td>
+				<td th:text="${employee.password}"></td>
+				<td>
+    				<a th:href="@{/updateEmployee(id=${employee.id})}" class="btn btn-warning">Update </a>
+				</td>
+				<td>
+    				<a th:href="@{/deleteEmployee(id=${employee.id})}" class="btn btn-danger">Delete </a>
+				</td>
+
+			</tr>
+		</tbody>
+	</table>	
+</div>
+
+<footer></footer>
+<div th:insert="layout/footer :: pie"></div>
+</body>
+</html>
