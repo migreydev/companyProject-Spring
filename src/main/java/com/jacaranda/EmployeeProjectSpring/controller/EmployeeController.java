@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,16 +28,17 @@ public class EmployeeController {
 	private CompanyService companyService;
 	
 	@GetMapping("/listEmployees")
-	public String listEmployees(Model model, @RequestParam("pageNum") Optional<Integer> pageNum,
-	        @RequestParam("pageSize") Optional<Integer> pageSize) {
-	    Page<Employee> pageableEmployee = employeeService.findAllPages(pageNum.orElse(1), pageSize.orElse(10));
-	    model.addAttribute("currentPage",pageNum.orElse(1));
-		model.addAttribute("totalPages",pageableEmployee.getTotalPages());
-		model.addAttribute("totalItems",pageableEmployee.getTotalElements());
+	public String listEmployees(Model model, 
+	    @RequestParam("pageNum") Optional<Integer> pageNum,
+	    @RequestParam("pageSize") Optional<Integer> pageSize,
+	    @RequestParam("sortField") Optional<String> sortField) {
+	    Page<Employee> pageableEmployee = employeeService.findAllPages(pageNum.orElse(1), pageSize.orElse(10), sortField.orElse("firstName") );
+	    model.addAttribute("currentPage", pageNum.orElse(1));
+	    model.addAttribute("totalPages", pageableEmployee.getTotalPages());
+	    model.addAttribute("totalItems", pageableEmployee.getTotalElements());
 	    model.addAttribute("pageableEmployee", pageableEmployee);
-	    return "listEmployees";
+	    return "listEmployees"; 
 	}
-
 
 	
 	@GetMapping("/addEmployee")

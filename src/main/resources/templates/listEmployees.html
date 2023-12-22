@@ -7,10 +7,11 @@
     <nav th:replace="layout/menu :: menuJacaranda"></nav>
     <div class="container">
         <table class="table">
+			
             <thead>
                 <tr>
                     <th scope="col">id</th>
-                    <th scope="col">firstName</th>
+                    <th scope="col" th:href="@{'/listEmployees?sortField=firstName&&pageNum='+${currentPage}}">firstName</th>
                     <th scope="col">lastName</th>
                     <th scope="col">email</th>
                     <th scope="col">gender</th>
@@ -46,7 +47,7 @@
         </table>
         
         <div>
-            Total Items: <span th:text="${totalItems}"></span>
+            Total pages: <span th:text="${totalItems}"></span>
             <a th:if="${currentPage > 1}" th:href="@{/listEmployees?pageNum=1}">First</a>
             <a th:if="${currentPage > 1}" th:href="@{'/listEmployees?pageNum=' + ${currentPage - 1}}">Previous</a>
             <span th:each="i: ${#numbers.sequence(1, totalPages)}">
@@ -58,7 +59,6 @@
             <a th:if="${currentPage < totalPages}" th:href="@{'/listEmployees?pageNum=' + ${currentPage + 1}}">Next</a>
             <a th:if="${currentPage < totalPages}" th:href="@{'/listEmployees?pageNum=' + ${totalPages}}">Last</a>
         </div>
-
     </div>
 
     <footer></footer>
